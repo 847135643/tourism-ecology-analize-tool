@@ -10,7 +10,7 @@
 
 | 方式 | 说明 | 链接 |
 |------|------|------|
-| 🌐 **在线使用** | 浏览器打开即用，无需安装 | [tourism-ecology-analize-tool.streamlit.app](https://tourism-ecology-analize-tool.streamlit.app) |
+| 🌐 **在线使用** | 浏览器打开即用，无需安装 | [b1774geotool.streamlit.app](https://b1774geotool.streamlit.app) |
 | 💻 **本地运行** | 下载仓库，本地启动 | 见下方 [运行说明](#五运行说明) |
 | 🗺️ **GeoScene 工具箱** | 在 GeoScene Pro 中加载 | 见下方 [GeoScene Pro 工具箱](#53-geoscene-pro-工具箱) |
 
@@ -155,7 +155,7 @@
 
 直接打开浏览器访问部署地址（无需安装任何软件）：
 
-🔗 **[https://tourism-ecology-analize-tool.streamlit.app](https://tourism-ecology-analize-tool.streamlit.app)**
+🔗 **[https://b1774geotool.streamlit.app](https://b1774geotool.streamlit.app)**
 
 ### 5.2 Streamlit 本地运行
 
