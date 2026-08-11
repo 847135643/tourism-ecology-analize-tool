@@ -1,0 +1,236 @@
+{
+  "analysis_scope": "Common valid cells of EQI, HAI, TDPI and five natural controls",
+  "counts": {
+    "common_valid": 232487,
+    "tdpi_zero": 224707,
+    "tdpi_positive": 7780,
+    "tdpi_positive_share": 0.033464236710009594
+  },
+  "natural_controls": [
+    "Elevation",
+    "Slope",
+    "Ruggedness",
+    "Temperature",
+    "Precipitation"
+  ],
+  "collinearity": {
+    "spearman_slope_ruggedness": 0.9117846040779509,
+    "spearman_elevation_temperature": -0.8228090742484365,
+    "vif": [
+      {
+        "variable": "Elevation",
+        "vif": 3.5083337513928403
+      },
+      {
+        "variable": "Slope",
+        "vif": 5.485790757744674
+      },
+      {
+        "variable": "Ruggedness",
+        "vif": 5.298879637154123
+      },
+      {
+        "variable": "Temperature",
+        "vif": 3.8409485344219454
+      },
+      {
+        "variable": "Precipitation",
+        "vif": 1.239776083974655
+      }
+    ],
+    "treatment": "Spline terms plus ridge regularization; HAI reported as sensitivity, not primary control."
+  },
+  "natural_background_model": {
+    "model": "logit(EQI) ~ spline(Elevation, Slope, Ruggedness, Temperature, Precipitation) + ridge; inverse-logit predictions",
+    "alpha": 0.056234132519034905,
+    "training_r2_descriptive": 0.5302457705259407,
+    "training_rmse_descriptive": 0.10501832633353496,
+    "spatial_block_cv_50km_r2": 0.5145277503165462,
+    "spatial_block_cv_50km_rmse": 0.10676083165060002,
+    "folds": [
+      {
+        "fold": 1,
+        "n_test": 46506,
+        "r2": 0.49770803694055743,
+        "rmse": 0.10837330350673907
+      },
+      {
+        "fold": 2,
+        "n_test": 46493,
+        "r2": 0.5298806587737972,
+        "rmse": 0.10890611504964512
+      },
+      {
+        "fold": 3,
+        "n_test": 46499,
+        "r2": 0.5357985124785457,
+        "rmse": 0.10398947373521504
+      },
+      {
+        "fold": 4,
+        "n_test": 46490,
+        "r2": 0.528577276540515,
+        "rmse": 0.10224221714752617
+      },
+      {
+        "fold": 5,
+        "n_test": 46499,
+        "r2": 0.47586436156717593,
+        "rmse": 0.11007544747392606
+      }
+    ]
+  },
+  "presence_contrast": {
+    "definition": "Mean natural-adjusted EQI residual in TDPI>0 minus TDPI=0",
+    "natural_only": {
+      "estimate": -0.033584305527508074,
+      "ci95": [
+        -0.04609670462345576,
+        -0.022608686394315413
+      ],
+      "bootstrap_iterations": 500
+    },
+    "natural_plus_HAI_sensitivity": {
+      "estimate": -0.011220079415366051,
+      "ci95": [
+        -0.023397391539534202,
+        -0.0015587236694646403
+      ],
+      "bootstrap_iterations": 500
+    }
+  },
+  "rank_correlations": {
+    "all_valid": {
+      "raw_tdpi_eqi": {
+        "rho": -0.035479938621566294,
+        "p": 1.1949289164004844e-65
+      },
+      "natural_adjusted": {
+        "rho": -0.05054358516024144,
+        "p": 2.407242537817917e-131
+      },
+      "natural_HAI_adjusted_sensitivity": {
+        "rho": -0.013078106685886612,
+        "p": 2.8616504233804636e-10
+      }
+    },
+    "positive_tdpi_only": {
+      "raw_tdpi_eqi": {
+        "rho": -0.10932490139852283,
+        "p": 4.0290105037200936e-22
+      },
+      "natural_adjusted": {
+        "rho": 0.008785431444283544,
+        "p": 0.4384558745543293
+      },
+      "natural_HAI_adjusted_sensitivity": {
+        "rho": 0.04055718056877763,
+        "p": 0.0003459482778406058
+      }
+    }
+  },
+  "positive_tdpi_nonlinear_model": {
+    "model": "natural-adjusted EQI residual ~ spline(TDPI) + ridge",
+    "alpha": 0.01778279410038923,
+    "training_r2_descriptive": 0.0029682444080256776,
+    "spatial_block_cv_20km_r2": -0.024442661343927696,
+    "spatial_block_cv_20km_rmse": 0.1237312115093238,
+    "folds": [
+      {
+        "fold": 1,
+        "n_test": 1555,
+        "r2": -0.010056012807080128,
+        "rmse": 0.11714935089431933
+      },
+      {
+        "fold": 2,
+        "n_test": 1555,
+        "r2": -0.04018503299168397,
+        "rmse": 0.11819874204376832
+      },
+      {
+        "fold": 3,
+        "n_test": 1557,
+        "r2": -0.02082405898860018,
+        "rmse": 0.1282553957944194
+      },
+      {
+        "fold": 4,
+        "n_test": 1557,
+        "r2": -0.05105289038385363,
+        "rmse": 0.12388246995179315
+      },
+      {
+        "fold": 5,
+        "n_test": 1556,
+        "r2": -0.06970421798516457,
+        "rmse": 0.13058790793673236
+      }
+    ],
+    "curve_display_range_p01_p99": [
+      0.04364585876464844,
+      0.4291611313819885
+    ]
+  },
+  "candidate_piecewise_change": {
+    "natural_only": {
+      "threshold_tdpi": 0.09906015545129776,
+      "slope_before": 0.20733982876954382,
+      "slope_after": -0.08795296705985378,
+      "delta_aic_piecewise_minus_linear": -9.488738859450677,
+      "spatial_block_bootstrap_20km": {
+        "threshold_ci95": [
+          0.05094876140356064,
+          0.16161792203783976
+        ],
+        "threshold_median": 0.09683237224817276,
+        "slope_before_ci95": [
+          -0.529224212390532,
+          3.5553891027300715
+        ],
+        "slope_after_ci95": [
+          -0.29305763650044847,
+          0.06581844239962888
+        ],
+        "iterations": 250
+      }
+    },
+    "natural_plus_HAI_sensitivity": {
+      "threshold_tdpi": 0.09683237224817276,
+      "slope_before": -0.1143627273519127,
+      "slope_after": 0.11735704915332522,
+      "delta_aic_piecewise_minus_linear": -4.075494786731724
+    },
+    "interpretation_limit": "Exploratory cross-sectional structural change, not ecological carrying capacity or causal threshold."
+  },
+  "local_adjusted_rank_association": {
+    "window": "31 x 31 cells (31 km)",
+    "valid_windows": 120905,
+    "mean": -0.0590897798538208,
+    "median": -0.05441126227378845,
+    "negative_share": 0.6997146519995038,
+    "positive_share": 0.3002853480004963
+  },
+  "class_codes": {
+    "1": "TDPI=0",
+    "2": "0<TDPI<=candidate threshold; final residual>=0",
+    "3": "0<TDPI<=candidate threshold; final residual<0",
+    "4": "TDPI>candidate threshold; final residual>=0",
+    "5": "TDPI>candidate threshold; final residual<0",
+    "-9999": "NoData"
+  },
+  "class_counts": {
+    "1": 224707,
+    "2": 2616,
+    "3": 2376,
+    "4": 1426,
+    "5": 1362
+  },
+  "limitations": [
+    "Cross-sectional association cannot identify causal tourism effects.",
+    "TDPI positive cells are sparse and spatially clustered.",
+    "HAI overlaps roads, lights and land use and may over-control part of tourism pressure.",
+    "TerraClimate native resolution is about 4.6 km; 1 km output is grid alignment only.",
+    "No administrative boundary vector or multiyear EQI panel was supplied."
+  ]
+}

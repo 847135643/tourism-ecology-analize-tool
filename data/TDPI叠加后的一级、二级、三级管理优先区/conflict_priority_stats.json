@@ -1,0 +1,94 @@
+{
+  "version": "conflict_priority_v0.2_tdpi_raster",
+  "grid": {
+    "epsg": 6933,
+    "pixel_size_m": 1000,
+    "size": [
+      695,
+      713
+    ],
+    "transform": [
+      1000.0,
+      0.0,
+      9388000.0,
+      0.0,
+      -1000.0,
+      4136000.0
+    ],
+    "study_bbox_wgs84": [
+      97.3,
+      27.9,
+      104.5,
+      34.4
+    ]
+  },
+  "inputs": {
+    "hai": "EQI和HAI和TDPI\\HAI\\HAI_阿坝甘孜_1km_20260809.tif",
+    "eqi": "EQI和HAI和TDPI\\eqi_v02\\EQI_v02_bbox_1km.tif",
+    "tdpi": "tdpi\\TDPI_v02_complete_WGS84.tif",
+    "tdpi_sha256": "6164c5f84ea6405ea6208b4e02b177863c54f70734836ed6a65425e5fb055427"
+  },
+  "tdpi_alignment": {
+    "source_crs": "EPSG:4326",
+    "target_crs": "EPSG:6933",
+    "resampling": "bilinear",
+    "source_nodata": -9999,
+    "target_nodata": -9999
+  },
+  "thresholds": {
+    "hai_common_valid_median": 0.2010069191455841,
+    "eqi_common_valid_median": 0.6896238327026367,
+    "tdpi_positive_p33_333": 0.03282146900892259,
+    "tdpi_positive_p66_667": 0.07446637004613876
+  },
+  "valid_cells": {
+    "hai_eqi_common": 491218,
+    "hai_eqi_tdpi_common": 232487,
+    "tdpi_missing_in_hai_eqi_common": 258731,
+    "tdpi_zero_in_three_way_common": 220249,
+    "tdpi_positive_in_three_way_common": 12238
+  },
+  "tdpi_continuous_stats": {
+    "min": 0.0,
+    "max": 0.6696008443832397,
+    "mean": 0.003710741177201271,
+    "positive_mean": 0.07049347460269928
+  },
+  "conflict_class_labels": {
+    "1": "高潜在冲突区",
+    "2": "开发压力区",
+    "3": "生态保育区",
+    "4": "低冲突区"
+  },
+  "conflict_class_counts": {
+    "1": 92596,
+    "2": 153013,
+    "3": 153013,
+    "4": 92596
+  },
+  "tdpi_level_labels": {
+    "1": "低 TDPI",
+    "2": "中 TDPI",
+    "3": "高 TDPI"
+  },
+  "tdpi_level_counts": {
+    "1": 224329,
+    "2": 4079,
+    "3": 4079
+  },
+  "management_class_labels": {
+    "1": "一级优先区",
+    "2": "二级优先区",
+    "3": "三级优先区"
+  },
+  "management_class_counts": {
+    "1": 2167,
+    "2": 4320,
+    "3": 226000
+  },
+  "limitations": [
+    "TDPI v0.2 文件未附带生成算法、维度权重和数据年份元数据；本次仅将其作为用户提供的连续综合指数使用。",
+    "TDPI 有效区形态接近阿坝州和甘孜州范围，但仍需正式行政区矢量文件核验。",
+    "HAI、EQI、TDPI 数据年份不完全一致，结果不能解释为严格同年状态。"
+  ]
+}
