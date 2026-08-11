@@ -17,6 +17,23 @@ import json
 import csv
 from pathlib import Path
 
+# 工具箱所在目录 → data 文件夹的绝对路径
+TOOLBOX_DIR = Path(__file__).parent
+DATA_DIR = TOOLBOX_DIR / "data"
+
+# 常用数据路径（相对 data/ 目录）
+DEFAULT_RASTERS = {
+    "conflict_4class": str(DATA_DIR / "TDPI叠加后的一级、二级、三级管理优先区" / "HAI_EQI_conflict_4class_1km.tif"),
+    "mgmt_priority":  str(DATA_DIR / "TDPI叠加后的一级、二级、三级管理优先区" / "management_priority_3class_1km.tif"),
+    "tdpi":           str(DATA_DIR / "TDPI叠加后的一级、二级、三级管理优先区" / "TDPI_v02_aligned_1km.tif"),
+    "tdpi_level":     str(DATA_DIR / "TDPI叠加后的一级、二级、三级管理优先区" / "TDPI_level_1km.tif"),
+    "eqi":            str(DATA_DIR / "EQI" / "EQI_v02_bbox_1km.tif"),
+    "hai":            str(DATA_DIR / "HAI" / "HAI_阿坝甘孜_1km_20260809.tif"),
+    "eqi_residual":   str(DATA_DIR / "02_EQI_natural_adjusted_residual.tif"),
+}
+DEFAULT_COUNTY_GEOJSON = str(DATA_DIR / "县域旅游生态治理优先级" / "03_表格与矢量" / "县域管理优先区统计.geojson")
+DEFAULT_OUTPUT_DIR = str(TOOLBOX_DIR)
+
 # ========== 工具箱定义 ==========
 class Toolbox:
     def __init__(self):
@@ -72,6 +89,14 @@ class CountyRiskReport:
         return [param0, param1, param2, param3, param4]
 
     def updateParameters(self, parameters):
+        if not parameters[0].altered:
+            parameters[0].value = DEFAULT_COUNTY_GEOJSON
+        if not parameters[1].altered:
+            parameters[1].value = DEFAULT_RASTERS["mgmt_priority"]
+        if not parameters[3].altered:
+            parameters[3].value = DEFAULT_COUNTY_GEOJSON
+        if not parameters[4].altered:
+            parameters[4].value = DEFAULT_OUTPUT_DIR
         return
 
     def updateMessages(self, parameters):
@@ -219,6 +244,14 @@ class ConflictScan:
         return [param0, param1, param2, param3]
 
     def updateParameters(self, parameters):
+        if not parameters[0].altered:
+            parameters[0].value = DEFAULT_RASTERS["conflict_4class"]
+        if not parameters[1].altered:
+            parameters[1].value = DEFAULT_RASTERS["mgmt_priority"]
+        if not parameters[2].altered:
+            parameters[2].value = DEFAULT_COUNTY_GEOJSON
+        if not parameters[3].altered:
+            parameters[3].value = DEFAULT_OUTPUT_DIR
         return
 
     def updateMessages(self, parameters):
@@ -324,6 +357,14 @@ class PointDiagnosis:
         return [param0, param1, param2, param3, param4]
 
     def updateParameters(self, parameters):
+        if not parameters[1].altered:
+            parameters[1].value = DEFAULT_RASTERS["conflict_4class"]
+        if not parameters[2].altered:
+            parameters[2].value = DEFAULT_RASTERS["mgmt_priority"]
+        if not parameters[3].altered:
+            parameters[3].value = DEFAULT_RASTERS["tdpi"]
+        if not parameters[4].altered:
+            parameters[4].value = DEFAULT_RASTERS["eqi"]
         return
 
     def updateMessages(self, parameters):
